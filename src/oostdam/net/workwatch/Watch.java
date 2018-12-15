@@ -17,15 +17,18 @@ public class Watch extends VBox {
 
     // Set start to now() as we want the watch to start when the application starts.
     private final Instant start = Instant.now();
-    // The modification for the time on the watch.
-    private Duration modification = Duration.ZERO;
+    // The breaks for the time on the watch.
+    private Duration breaks = Duration.ZERO;
 
-    private Label rawTime = new Label();
-    private Label modificationTime = new Label();
-    private Label resultTime = new Label();
+    // Label for the unmodified time.
+    private Label elapsedTime = new Label();
+    // Label for the breaks applied to the time.
+    private Label breakTime = new Label();
+    // Label for the resulting time.
+    private Label workedTime = new Label();
 
     public Watch(){
-        getChildren().addAll(rawTime, modificationTime, resultTime);
+        getChildren().addAll(elapsedTime, breakTime, workedTime);
 
         // Creating a Timeline with 2 KeyFrames(think frames of an animation)
         // first frame takes zero time and updates the time on the watch
@@ -38,6 +41,8 @@ public class Watch extends VBox {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
 
+        // Updating the time in the constructor, so the content of the labels is set before the javafx framework resolves its layout.
+        // If not the labels would get their content on the first frame of the clock.
         updateTime();
     }
 
@@ -46,19 +51,19 @@ public class Watch extends VBox {
      * @param duration
      */
     public void modify(Duration duration){
-        modification = modification.plus(duration);
+        breaks = breaks.plus(duration);
         updateTime();
     }
 
     /**
-     * Recalculate the time of the watch.
+     * Update the time shown on the watch.
      */
     private void updateTime(){
-        Duration rawTime = Duration.between(start, Instant.now());
-        Duration resultTime = rawTime.plus(modification);
-        this.rawTime.setText("Unmodified: " + format(rawTime));
-        this.modificationTime.setText("Modification: " + format(modification));
-        this.resultTime.setText("Time: " + format(resultTime));
+        Duration elapsed = Duration.between(start, Instant.now());
+        Duration worked = elapsed.minus(breaks);
+        this.elapsedTime.setText("Time elapsed: " + format(elapsed));
+        this.breakTime.setText("Break: " + format(breaks));
+        this.workedTime.setText("Worked: " + format(worked));
     }
 
     /**

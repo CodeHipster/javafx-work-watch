@@ -23,7 +23,8 @@
 <HBox
         xmlns:fx="http://javafx.com/fxml"
         xmlns="http://javafx.com/javafx"
-        fx:controller="oostdam.net.workwatch.WorkWatchController">
+        fx:controller="oostdam.net.workwatch.WorkWatchController"
+        spacing="5">
 
     <!--
       The children element is not a node but a property binding,
@@ -35,7 +36,11 @@
           fx:id binds the element to a property in the controller annotated with @FXML.
           -->
         <Watch fx:id="watch"/>
-        <Button fx:id="plus15" text="+15 min"/>
-        <Button fx:id="minus15" text="-15 min"/>
+        <VBox spacing="5">
+            <children>
+                <Button fx:id="plus15" text="+15 min break"/>
+                <Button fx:id="minus15" text="-15 min break"/>
+            </children>
+        </VBox>
     </children>
 </HBox>
