@@ -26,3 +26,10 @@ You will need to configure the dependencies on javafx.
     - javafx.graphics.jar
     
 
+### jar
+
+TODO: make executable jar
+
+    jar --create --file WorkWatch.jar --main-class oostdam.net.workwatch.Main -C out/production/java-workwatch .
+    copy lib folder of javafx 11 to pkg
+    java --module-path pkg --module oostdam.net.workwatch
