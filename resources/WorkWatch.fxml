@@ -11,7 +11,7 @@
   Import the nodes that are used in the node graph
   -->
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import oostdam.net.workwatch.TimeLabel?>
 <?import javafx.scene.layout.*?>
 
 <!--
@@ -28,7 +28,7 @@
         <!--
           fx:id binds the element to a property/field in the controller annotated with @FXML
           -->
-        <Label fx:id="time"/>
+        <TimeLabel fx:id="time"/>
         <Button fx:id="plus15"/>
         <Button fx:id="minus15"/>
     </children>
