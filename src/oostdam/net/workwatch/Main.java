@@ -14,15 +14,15 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         // Load the fxml that defines the gui.
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/WorkWatch.fxml"));
-        // get the root node from the loader
+        // Get the root node from the loader.
         HBox root = loader.load();
-        // create a scene given the root node.
+        // Create a scene given the root node.
         Scene scene = new Scene(root);
 
         stage.setTitle("WorkWatch");
-        // attach the scene to the stage given by the framework to this start method.
+        // Attach the scene to the stage given by the framework to this start method.
         stage.setScene(scene);
-        // show the stage/window
+        // Show the stage/window.
         stage.show();
     }
 

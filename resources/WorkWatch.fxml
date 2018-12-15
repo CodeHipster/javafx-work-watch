@@ -2,34 +2,40 @@
 
 <!--
   A fxml file defines a node graph that can be loaded and rendered by an javafx application.
-  A node is a gui element that can be either a branch or a leaf
-  A branch can contain branches and/or leaves
+  A node is a gui element that can be either a branch/parent or a leaf/child.
+  A branch can contain branches and/or leaves.
   This way a graph is build.
   -->
 
 <!--
-  Import the nodes that are used in the node graph
+  Import the nodes that are used in the node graph.
   -->
 <?import javafx.scene.control.Button?>
-<?import oostdam.net.workwatch.TimeLabel?>
+<?import oostdam.net.workwatch.Watch?>
 <?import javafx.scene.layout.*?>
 
 <!--
   HBox a branch node, lays out child nodes horizontally.
-  An instance of the HBox class will be created and can be loaded by the FXMLLoader
-  the xmlns:fx namespace is required (and must be fx) to use fxml attributes
+  An instance of the HBox class will be created and can be loaded by the FXMLLoader.
+  The xmlns:fx namespace is required (and must be fx) to use fxml attributes.
   fx:controller defines the class that will be used to bind nodes with.
   -->
 <HBox
         xmlns:fx="http://javafx.com/fxml"
         xmlns="http://javafx.com/javafx"
-        fx:controller="oostdam.net.workwatch.WorkTimerController">
+        fx:controller="oostdam.net.workwatch.WorkWatchController">
+
+    <!--
+      The children element is not a node but a property binding,
+      it adds the nodes inside to the list it retrieves by calling getChildren() on the HBox instance
+      -->
     <children>
         <!--
-          fx:id binds the element to a property/field in the controller annotated with @FXML
+          The Watch element is a custom node.
+          fx:id binds the element to a property in the controller annotated with @FXML.
           -->
-        <TimeLabel fx:id="time"/>
-        <Button fx:id="plus15"/>
-        <Button fx:id="minus15"/>
+        <Watch fx:id="watch"/>
+        <Button fx:id="plus15" text="+15 min"/>
+        <Button fx:id="minus15" text="-15 min"/>
     </children>
 </HBox>
