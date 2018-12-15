@@ -4,6 +4,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -12,14 +13,20 @@ import java.time.Instant;
  * Custom javafx node.
  * It keeps track of time and exposes the ability to modify the time.
  */
-public class Watch extends Label{
+public class Watch extends VBox {
 
     // Set start to now() as we want the watch to start when the application starts.
     private final Instant start = Instant.now();
     // The modification for the time on the watch.
     private Duration modification = Duration.ZERO;
 
+    private Label rawTime = new Label();
+    private Label modificationTime = new Label();
+    private Label resultTime = new Label();
+
     public Watch(){
+        getChildren().addAll(rawTime, modificationTime, resultTime);
+
         // Creating a Timeline with 2 KeyFrames(think frames of an animation)
         // first frame takes zero time and updates the time on the watch
         // second frame takes 1 second and does nothing
@@ -30,6 +37,8 @@ public class Watch extends Label{
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+
+        updateTime();
     }
 
     /**
@@ -45,8 +54,11 @@ public class Watch extends Label{
      * Recalculate the time of the watch.
      */
     private void updateTime(){
-        Duration duration = Duration.between(start, Instant.now()).plus(modification);
-        this.setText("Time: " + format(duration));
+        Duration rawTime = Duration.between(start, Instant.now());
+        Duration resultTime = rawTime.plus(modification);
+        this.rawTime.setText("Unmodified: " + format(rawTime));
+        this.modificationTime.setText("Modification: " + format(modification));
+        this.resultTime.setText("Time: " + format(resultTime));
     }
 
     /**
