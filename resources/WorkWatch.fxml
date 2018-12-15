@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  A fxml file defines a node graph that can be loaded and rendered by an javafx application.
+  A node is a gui element that can be either a branch or a leaf
+  A branch can contain branches and/or leaves
+  This way a graph is build.
+  -->
+
+<!--
+  Import the nodes that are used in the node graph
+  -->
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 
+<!--
+  HBox a branch node, lays out child nodes horizontally.
+  An instance of the HBox class will be created and can be loaded by the FXMLLoader
+  the xmlns:fx namespace is required (and must be fx) to use fxml attributes
+  fx:controller defines the class that will be used to bind nodes with.
+  -->
 <HBox
         xmlns:fx="http://javafx.com/fxml"
         xmlns="http://javafx.com/javafx"
-        fx:controller="oostdam.net.workwatch.WorkTimerController"
-        id="HBox" alignment="CENTER" spacing="5.0">
+        fx:controller="oostdam.net.workwatch.WorkTimerController">
     <children>
+        <!--
+          fx:id binds the element to a property/field in the controller annotated with @FXML
+          -->
         <Label fx:id="time"/>
         <Button fx:id="plus15"/>
         <Button fx:id="minus15"/>

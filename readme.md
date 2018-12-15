@@ -1,10 +1,28 @@
 # Work watch
 
 simple app to keep track of time. 
-has 1 button.
-- reduce 15 mins, this reduces the counted time by 15 mins
 
-When the app starts it starts the timer.
+It has 1 label and 2 buttons.
+- label shows the time since the application started
+- button 1 increases the time with 15 minutes
+- button 2 reduces the time with 15 minutes
 
-Build with java 11 and javafx 11
+
+## requirements
+The project is build with [java 11](https://www.oracle.com/technetwork/java/javase/downloads/index.html) 
+and [javafx 11](https://openjfx.io/)
+
+
+### intellij
+
+You will need to configure the dependencies on javafx.
+
+    Open module settings (or Project structure...) -> modules -> dependencies(tab)
+    add dependencies to the module (JARs or directories)
+    browse to the directory where you installed javafx -> lib folder and select
+    - javafx.base.jar
+    - javafx.controls.jar
+    - javafx.fxml.jar
+    - javafx.graphics.jar
+    
 
